@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NovaStore | Quality Products</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f5f5f5;color:#222}
+header{background:#111;color:#fff;padding:16px 6%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.logo{font-size:24px;font-weight:bold}
+nav{display:flex;align-items:center;gap:18px}
+nav a{color:#fff;text-decoration:none;font-size:14px}
+.nav-btn{border:0;border-radius:6px;padding:9px 14px;font-weight:bold;cursor:pointer}
+.login-btn{background:#fff;color:#111}
+.cart-btn{background:#eee;color:#111}
+.hero{min-height:480px;display:flex;align-items:center;padding:60px 7%;background:linear-gradient(135deg,#111,#333);color:#fff}
+.hero-content{max-width:650px}.hero h1{font-size:48px;margin-bottom:20px}.hero p{font-size:18px;line-height:1.6;margin-bottom:30px;color:#ddd}
+.btn{display:inline-block;background:#fff;color:#111;padding:14px 25px;border-radius:6px;text-decoration:none;font-weight:bold}
+.products{padding:60px 7%}.section-title{text-align:center;margin-bottom:35px}.section-title h2{font-size:32px;margin-bottom:10px}.section-title p{color:#666}
+.tools{max-width:1000px;margin:0 auto 30px;display:flex;gap:12px;flex-wrap:wrap}
+.search{flex:1;min-width:220px;padding:13px;border:1px solid #ddd;border-radius:7px}
+.category{padding:13px;border:1px solid #ddd;border-radius:7px;background:#fff}
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+.product{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.08)}
+.product-image{height:210px;background:#eee;display:flex;align-items:center;justify-content:center;font-size:85px}
+.product-info{padding:20px}.product-info h3{margin-bottom:9px}.product-info p{color:#666;font-size:14px;margin-bottom:15px;line-height:1.5}.price{font-size:20px;font-weight:bold;margin-bottom:15px}
+.buy-btn{width:100%;padding:12px;border:0;background:#111;color:#fff;border-radius:5px;cursor:pointer;font-size:15px}.buy-btn:hover{background:#333}
+.about{background:#fff;padding:70px 7%;text-align:center}.about h2,.contact h2{font-size:32px;margin-bottom:20px}.about p{max-width:700px;margin:auto;line-height:1.7;color:#666}
+.contact{padding:60px 7%;text-align:center}.contact p{margin-bottom:10px;color:#555}
+footer{background:#111;color:#fff;text-align:center;padding:25px;margin-top:30px}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;align-items:center;justify-content:center;padding:20px}
+.box{background:#fff;width:100%;max-width:430px;padding:30px;border-radius:12px;position:relative;max-height:90vh;overflow:auto}
+.box h2{margin-bottom:8px}.box>p{color:#666;margin-bottom:20px}.close{position:absolute;right:14px;top:8px;border:0;background:none;font-size:28px;cursor:pointer}
+.box input,.box textarea{width:100%;padding:13px;margin-bottom:13px;border:1px solid #ddd;border-radius:6px}.submit{width:100%;padding:13px;background:#111;color:#fff;border:0;border-radius:6px;cursor:pointer}
+.switch{text-align:center;margin-top:18px;font-size:14px}.switch button{border:0;background:none;font-weight:bold;cursor:pointer}
+.cart-list{margin:15px 0}.cart-item{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid #eee}.qty button{padding:4px 8px;border:1px solid #ddd;background:#fff;cursor:pointer}.total{font-size:20px;font-weight:bold;margin:20px 0}
+.empty{text-align:center;color:#666;padding:25px}
+@media(max-width:768px){header{padding:14px 5%}.logo{font-size:20px}nav{gap:7px}nav a{display:none}.nav-btn{padding:8px 9px;font-size:12px}.hero{min-height:430px;padding:50px 7%}.hero h1{font-size:38px}.hero p{font-size:16px}.product-grid{grid-template-columns:1fr}.product-image{height:190px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">NovaStore</div>
+  <nav>
+    <a href="#home">Home</a><a href="#products">Products</a><a href="#about">About</a><a href="#contact">Contact</a>
+    <button class="nav-btn login-btn" onclick="openModal('loginModal')">Login</button>
+    <button class="nav-btn cart-btn" onclick="openCart()">Cart (<span id="cartCount">0</span>)</button>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Quality Products. Better Living.</h1>
+    <p>Discover carefully selected products at great prices. Shop with confidence and get quality delivered to you.</p>
+    <a href="#products" class="btn">Shop Now</a>
+  </div>
+</section>
+
+<section class="products" id="products">
+  <div class="section-title"><h2>Our Products</h2><p>Explore our popular products.</p></div>
+  <div class="tools">
+    <input class="search" id="search" placeholder="Search products..." oninput="renderProducts()">
+    <select class="category" id="category" onchange="renderProducts()">
+      <option value="all">All Categories</option><option value="electronics">Electronics</option>
+      <option value="fashion">Fashion</option><option value="accessories">Accessories</option><option value="gaming">Gaming</option>
+    </select>
+  </div>
+  <div class="product-grid" id="productGrid"></div>
+</section>
+
+<section class="about" id="about">
+  <h2>About NovaStore</h2>
+  <p>NovaStore is an online storefront for quality everyday products. Browse our collection, add products to your cart and prepare your order for checkout.</p>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Contact Us</h2>
+  <p>Email: support@novastore.example</p>
+  <p>We are happy to help with product and order questions.</p>
+</section>
+
+<footer><p>&copy; 2026 NovaStore. All rights reserved.</p></footer>
+
+<!-- LOGIN -->
+<div class="modal" id="loginModal">
+  <div class="box">
+    <button class="close" onclick="closeModal('loginModal')">×</button>
+    <h2>Welcome Back</h2><p>Login to your NovaStore account.</p>
+    <input type="email" id="loginEmail" placeholder="Email address">
+    <input type="password" id="loginPassword" placeholder="Password">
+    <button class="submit" onclick="loginUser()">Login</button>
+    <div class="switch">Don't have an account? <button onclick="switchModal('loginModal','signupModal')">Sign Up</button></div>
+  </div>
+</div>
+
+<!-- SIGN UP -->
+<div class="modal" id="signupModal">
+  <div class="box">
+    <button class="close" onclick="closeModal('signupModal')">×</button>
+    <h2>Create Account</h2><p>Create your NovaStore account.</p>
+    <input type="text" id="signupName" placeholder="Your name">
+    <input type="email" id="signupEmail" placeholder="Email address">
+    <input type="password" id="signupPassword" placeholder="Password">
+    <button class="submit" onclick="signupUser()">Create Account</button>
+    <div class="switch">Already have an account? <button onclick="switchModal('signupModal','loginModal')">Login</button></div>
+  </div>
+</div>
+
+<!-- CART -->
+<div class="modal" id="cartModal">
+  <div class="box">
+    <button class="close" onclick="closeModal('cartModal')">×</button>
+    <h2>Your Cart</h2>
+    <div id="cartList" class="cart-list"></div>
+    <div class="total">Total: ₦<span id="cartTotal">0</span></div>
+    <button class="submit" onclick="openCheckout()">Proceed to Checkout</button>
+  </div>
+</div>
+
+<!-- CHECKOUT -->
+<div class="modal" id="checkoutModal">
+  <div class="box">
+    <button class="close" onclick="closeModal('checkoutModal')">×</button>
+    <h2>Checkout</h2><p>Enter your delivery details.</p>
+    <input id="customerName" placeholder="Full name">
+    <input id="customerPhone" placeholder="Phone number">
+    <textarea id="customerAddress" rows="4" placeholder="Delivery address"></textarea>
+    <button class="submit" onclick="placeOrder()">Place Order</button>
+    <p style="margin-top:15px;font-size:12px">Payment is not connected yet. Do not enter card or banking passwords here.</p>
+  </div>
+</div>
+
+<script>
+const products=[
+{name:"Wireless Headphones",price:25000,cat:"electronics",icon:"🎧",desc:"Comfortable wireless headphones with quality sound."},
+{name:"Smart Watch",price:35000,cat:"electronics",icon:"⌚",desc:"Stylish smartwatch for everyday use."},
+{name:"Premium Backpack",price:18000,cat:"fashion",icon:"🎒",desc:"Strong and stylish backpack for work and travel."},
+{name:"Smartphone",price:185000,cat:"electronics",icon:"📱",desc:"Modern smartphone with a beautiful display."},
+{name:"Laptop",price:450000,cat:"electronics",icon:"💻",desc:"Fast and reliable laptop for work and study."},
+{name:"Bluetooth Speaker",price:30000,cat:"electronics",icon:"🔊",desc:"Portable speaker with powerful sound."},
+{name:"Casual Sneakers",price:28000,cat:"fashion",icon:"👟",desc:"Comfortable sneakers for everyday activities."},
+{name:"Fashion Sunglasses",price:12000,cat:"accessories",icon:"🕶️",desc:"Stylish sunglasses for everyday wear."},
+{name:"Digital Camera",price:220000,cat:"electronics",icon:"📷",desc:"Capture special moments in high quality."},
+{name:"Gaming Controller",price:22000,cat:"gaming",icon:"🎮",desc:"Responsive controller for your gaming setup."},
+{name:"Wireless Keyboard",price:20000,cat:"electronics",icon:"⌨️",desc:"Slim wireless keyboard for your computer."},
+{name:"Wireless Mouse",price:10000,cat:"electronics",icon:"🖱️",desc:"Comfortable and responsive wireless mouse."}
+];
+
+let cart=JSON.parse(localStorage.getItem("novaCart")||"[]");
+
+function money(n){return n.toLocaleString("en-NG")}
+function renderProducts(){
+ const q=document.getElementById("search").value.toLowerCase();
+ const c=document.getElementById("category").value;
+ const list=products.filter(p=>(p.name.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q))&&(c==="all"||p.cat===c));
+ document.getElementById("productGrid").innerHTML=list.map(p=>`
+ <div class="product"><div class="product-image">${p.icon}</div><div class="product-info">
+ <h3>${p.name}</h3><p>${p.desc}</p><div class="price">₦${money(p.price)}</div>
+ <button class="buy-btn" onclick="addToCart('${p.name}')">Add to Cart</button></div></div>`).join("")||"<p class='empty'>No products found.</p>";
+}
+function addToCart(name){
+ const item=cart.find(x=>x.name===name);
+ if(item)item.qty++;else cart.push({name,qty:1});
+ saveCart(); alert(name+" added to cart.");
+}
+function saveCart(){localStorage.setItem("novaCart",JSON.stringify(cart));updateCount()}
+function updateCount(){document.getElementById("cartCount").textContent=cart.reduce((s,x)=>s+x.qty,0)}
+function openCart(){renderCart();openModal("cartModal")}
+function renderCart(){
+ const el=document.getElementById("cartList");
+ if(!cart.length){el.innerHTML="<div class='empty'>Your cart is empty.</div>";document.getElementById("cartTotal").textContent="0";return}
+ let total=0;
+ el.innerHTML=cart.map((x,i)=>{const p=products.find(y=>y.name===x.name);total+=p.price*x.qty;return `<div class="cart-item"><div><b>${p.name}</b><br>₦${money(p.price)} × ${x.qty}</div><div class="qty"><button onclick="changeQty(${i},-1)">−</button> <button onclick="changeQty(${i},1)">+</button></div></div>`}).join("");
+ document.getElementById("cartTotal").textContent=money(total);
+}
+function changeQty(i,n){cart[i].qty+=n;if(cart[i].qty<=0)cart.splice(i,1);saveCart();renderCart()}
+function openCheckout(){if(!cart.length){alert("Your cart is empty.");return}closeModal("cartModal");openModal("checkoutModal")}
+function placeOrder(){
+ const n=document.getElementById("customerName").value.trim(),ph=document.getElementById("customerPhone").value.trim(),a=document.getElementById("customerAddress").value.trim();
+ if(!n||!ph||!a){alert("Please fill in your delivery details.");return}
+ alert("Order received! Your order details are ready for the next payment/fulfillment step.");
+ cart=[];saveCart();closeModal("checkoutModal");
+}
+function openModal(id){document.getElementById(id).style.display="flex"}
+function closeModal(id){document.getElementById(id).style.display="none"}
+function switchModal(a,b){closeModal(a);openModal(b)}
+function signupUser(){
+ const n=document.getElementById("signupName").value.trim(),e=document.getElementById("signupEmail").value.trim(),p=document.getElementById("signupPassword").value;
+ if(!n||!e||!p){alert("Please fill in all fields.");return}
+ alert("The signup interface is ready. Connect a real authentication service before using real customer accounts.");
+}
+function loginUser(){
+ const e=document.getElementById("loginEmail").value.trim(),p=document.getElementById("loginPassword").value;
+ if(!e||!p){alert("Please enter your email and password.");return}
+ alert("The login interface is ready. Connect a real authentication service before using real customer accounts.");
+}
+window.onclick=e=>{if(e.target.classList.contains("modal"))e.target.style.display="none"}
+renderProducts();updateCount();
+</script>
+</body>
+</html>
