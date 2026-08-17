@@ -1,364 +1,135 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="product-grid">
 
-  <title>NovaStore | Quality Products</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      background: #f5f5f5;
-      color: #222;
-    }
-
-    /* NAVBAR */
-    header {
-      background: #111;
-      color: white;
-      padding: 18px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: 14px;
-    }
-
-    /* HERO */
-    .hero {
-      min-height: 500px;
-      display: flex;
-      align-items: center;
-      padding: 60px 7%;
-      background: linear-gradient(135deg, #111, #333);
-      color: white;
-    }
-
-    .hero-content {
-      max-width: 600px;
-    }
-
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 18px;
-      line-height: 1.6;
-      margin-bottom: 30px;
-      color: #ddd;
-    }
-
-    .btn {
-      display: inline-block;
-      background: #fff;
-      color: #111;
-      padding: 14px 25px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    /* PRODUCTS */
-    .products {
-      padding: 60px 7%;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .section-title h2 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-
-    .section-title p {
-      color: #666;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
-
-    .product {
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-    }
-
-    .product-image {
-      height: 220px;
-      background: #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 60px;
-    }
-
-    .product-info {
-      padding: 20px;
-    }
-
-    .product-info h3 {
-      margin-bottom: 10px;
-    }
-
-    .product-info p {
-      color: #666;
-      font-size: 14px;
-      margin-bottom: 15px;
-    }
-
-    .price {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
-
-    .buy-btn {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      background: #111;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 15px;
-    }
-
-    .buy-btn:hover {
-      background: #333;
-    }
-
-    /* ABOUT */
-    .about {
-      background: white;
-      padding: 70px 7%;
-      text-align: center;
-    }
-
-    .about h2 {
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
-
-    .about p {
-      max-width: 700px;
-      margin: auto;
-      line-height: 1.7;
-      color: #666;
-    }
-
-    /* CONTACT */
-    .contact {
-      padding: 60px 7%;
-      text-align: center;
-    }
-
-    .contact h2 {
-      margin-bottom: 20px;
-      font-size: 32px;
-    }
-
-    .contact p {
-      margin-bottom: 10px;
-      color: #555;
-    }
-
-    /* FOOTER */
-    footer {
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 25px;
-      margin-top: 30px;
-    }
-
-    /* MOBILE */
-    @media (max-width: 768px) {
-
-      header {
-        padding: 16px 5%;
-      }
-
-      nav a {
-        margin-left: 10px;
-        font-size: 12px;
-      }
-
-      .hero {
-        min-height: 450px;
-        padding: 50px 7%;
-      }
-
-      .hero h1 {
-        font-size: 38px;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-
-      .product-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .product-image {
-        height: 200px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- NAVIGATION -->
-  <header>
-    <div class="logo">NovaStore</div>
-
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#products">Products</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-
-  <!-- HERO SECTION -->
-  <section class="hero" id="home">
-
-    <div class="hero-content">
-
-      <h1>Quality Products. Better Living.</h1>
-
-      <p>
-        Discover carefully selected products at great prices.
-        Shop with confidence and get quality delivered to you.
-      </p>
-
-      <a href="#products" class="btn">
-        Shop Now
-      </a>
-
+  <!-- PRODUCT 1 -->
+  <div class="product">
+    <div class="product-image">🎧</div>
+    <div class="product-info">
+      <h3>Wireless Headphones</h3>
+      <p>Comfortable wireless headphones with quality sound.</p>
+      <div class="price">₦25,000</div>
+      <button class="buy-btn" onclick="buyProduct('Wireless Headphones')">Buy Now</button>
     </div>
+  </div>
 
-  </section>
-
-
-  <!-- PRODUCTS -->
-  <section class="products" id="products">
-
-    <div class="section-title">
-      <h2>Our Products</h2>
-      <p>Check out some of our popular products.</p>
+  <!-- PRODUCT 2 -->
+  <div class="product">
+    <div class="product-image">⌚</div>
+    <div class="product-info">
+      <h3>Smart Watch</h3>
+      <p>Stylish smartwatch for everyday use.</p>
+      <div class="price">₦35,000</div>
+      <button class="buy-btn" onclick="buyProduct('Smart Watch')">Buy Now</button>
     </div>
+  </div>
 
+  <!-- PRODUCT 3 -->
+  <div class="product">
+    <div class="product-image">🎒</div>
+    <div class="product-info">
+      <h3>Premium Backpack</h3>
+      <p>Strong and stylish backpack for work and travel.</p>
+      <div class="price">₦18,000</div>
+      <button class="buy-btn" onclick="buyProduct('Premium Backpack')">Buy Now</button>
+    </div>
+  </div>
 
-    <div class="product-grid">
+  <!-- PRODUCT 4 -->
+  <div class="product">
+    <div class="product-image">📱</div>
+    <div class="product-info">
+      <h3>Smartphone</h3>
+      <p>Modern smartphone with a beautiful display.</p>
+      <div class="price">₦185,000</div>
+      <button class="buy-btn" onclick="buyProduct('Smartphone')">Buy Now</button>
+    </div>
+  </div>
 
-      <!-- PRODUCT 1 -->
-      <div class="product">
+  <!-- PRODUCT 5 -->
+  <div class="product">
+    <div class="product-image">💻</div>
+    <div class="product-info">
+      <h3>Laptop</h3>
+      <p>Fast and reliable laptop for work and study.</p>
+      <div class="price">₦450,000</div>
+      <button class="buy-btn" onclick="buyProduct('Laptop')">Buy Now</button>
+    </div>
+  </div>
 
-        <div class="product-image">
-          🎧
-        </div>
+  <!-- PRODUCT 6 -->
+  <div class="product">
+    <div class="product-image">🔊</div>
+    <div class="product-info">
+      <h3>Bluetooth Speaker</h3>
+      <p>Portable speaker with powerful sound.</p>
+      <div class="price">₦30,000</div>
+      <button class="buy-btn" onclick="buyProduct('Bluetooth Speaker')">Buy Now</button>
+    </div>
+  </div>
 
-        <div class="product-info">
+  <!-- PRODUCT 7 -->
+  <div class="product">
+    <div class="product-image">👟</div>
+    <div class="product-info">
+      <h3>Casual Sneakers</h3>
+      <p>Comfortable sneakers for everyday activities.</p>
+      <div class="price">₦28,000</div>
+      <button class="buy-btn" onclick="buyProduct('Casual Sneakers')">Buy Now</button>
+    </div>
+  </div>
 
-          <h3>Wireless Headphones</h3>
+  <!-- PRODUCT 8 -->
+  <div class="product">
+    <div class="product-image">🕶️</div>
+    <div class="product-info">
+      <h3>Fashion Sunglasses</h3>
+      <p>Stylish sunglasses for everyday wear.</p>
+      <div class="price">₦12,000</div>
+      <button class="buy-btn" onclick="buyProduct('Fashion Sunglasses')">Buy Now</button>
+    </div>
+  </div>
 
-          <p>
-            Comfortable wireless headphones with quality sound.
-          </p>
+  <!-- PRODUCT 9 -->
+  <div class="product">
+    <div class="product-image">📷</div>
+    <div class="product-info">
+      <h3>Digital Camera</h3>
+      <p>Capture your special moments in high quality.</p>
+      <div class="price">₦220,000</div>
+      <button class="buy-btn" onclick="buyProduct('Digital Camera')">Buy Now</button>
+    </div>
+  </div>
 
-          <div class="price">
-            ₦25,000
-          </div>
+  <!-- PRODUCT 10 -->
+  <div class="product">
+    <div class="product-image">🎮</div>
+    <div class="product-info">
+      <h3>Gaming Controller</h3>
+      <p>Responsive controller for your gaming setup.</p>
+      <div class="price">₦22,000</div>
+      <button class="buy-btn" onclick="buyProduct('Gaming Controller')">Buy Now</button>
+    </div>
+  </div>
 
-          <button class="buy-btn"
-            onclick="buyProduct('Wireless Headphones')">
-            Buy Now
-          </button>
+  <!-- PRODUCT 11 -->
+  <div class="product">
+    <div class="product-image">⌨️</div>
+    <div class="product-info">
+      <h3>Wireless Keyboard</h3>
+      <p>Slim wireless keyboard for your computer.</p>
+      <div class="price">₦20,000</div>
+      <button class="buy-btn" onclick="buyProduct('Wireless Keyboard')">Buy Now</button>
+    </div>
+  </div>
 
-        </div>
+  <!-- PRODUCT 12 -->
+  <div class="product">
+    <div class="product-image">🖱️</div>
+    <div class="product-info">
+      <h3>Wireless Mouse</h3>
+      <p>Comfortable and responsive wireless mouse.</p>
+      <div class="price">₦10,000</div>
+      <button class="buy-btn" onclick="buyProduct('Wireless Mouse')">Buy Now</button>
+    </div>
+  </div>
 
-      </div>
-
-
-      <!-- PRODUCT 2 -->
-      <div class="product">
-
-        <div class="product-image">
-          ⌚
-        </div>
-
-        <div class="product-info">
-
-          <h3>Smart Watch</h3>
-
-          <p>
-            Stylish smartwatch for everyday use.
-          </p>
-
-          <div class="price">
-            ₦35,000
-          </div>
-
-          <button class="buy-btn"
-            onclick="buyProduct('Smart Watch')">
-            Buy Now
-          </button>
-
-        </div>
-
-      </div>
-
-
-      <!-- PRODUCT 3 -->
-      <div class="product">
-
-        <div class="product-image">
-          🎒
-        </div>
-
-        <div class="product-info">
-
-          <h3>Premium Backpack</h3>
-
-          <p>
-            Strong and stylish backpack for work and travel.
-          </p>
-
-          <div class="price">
-            ₦18,000
-          </div>
-
-          <button class="buy-btn"
-           
+</div>
